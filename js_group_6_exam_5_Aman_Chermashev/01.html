@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01</title>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+    <script>
+        var postContainer1 = $('<div class="card"></div>');
+        var postContainer2 = $('<div class="card"></div>');
+        var postContainer3 = $('<div class="card"></div>');
+        var buttonRemove1 = $('<button id="remove1" type="button">Remove</button>');
+        var buttonRemove2 = $('<button id="remove2" type="button">Remove</button>');
+        var buttonRemove3 = $('<button id="remove3" type="button">Remove</button>');
+        var buttonInProgress = $('<button id="InProgress" type="button">In Progress ></button>');
+        var buttonDone = $('<button id="done" type="button">Done ></button>');
+
+        var allPosts = [];
+        var get = localStorage.getItem('user');
+        var parse = JSON.parse(get);
+        allPosts = parse || [];
+
+        var allPosts2 = [];
+        var get2 = localStorage.getItem('user2');
+        var parse2 = JSON.parse(get2);
+        allPosts2 = parse2 || [];
+
+        var allPosts3 = [];
+        var get3 = localStorage.getItem('user2');
+        var parse3 = JSON.parse(get3);
+        allPosts3 = parse3 || [];
+
+        $(function () {
+
+allPosts2.forEach(function (item) {
+    postContainer2.append($('<h1></h1>').html(item.text));
+    postContainer2.append(buttonRemove2);
+    postContainer2.append(buttonDone);
+    $('#inProgress').append(postContainer2);
+});
+            allPosts3.forEach(function (item) {
+                postContainer3.append($('<h1></h1>').html(item.text));
+                postContainer3.append(buttonRemove3);
+            });
+
+            allPosts.forEach(function(item, i) {
+                postContainer1.append($('<h1></h1>').html(item.text));
+                postContainer1.append(buttonRemove1);
+                postContainer1.append(buttonInProgress);
+                $('#toDo').append(postContainer1);
+
+
+
+
+                $('#doneDiv').append(postContainer3);
+                var removeButton = function(container){
+                allPosts.splice(i, 1);
+                container.remove();
+                localStorage.setItem('user', JSON.stringify(allPosts));
+                allPosts2.splice(i, 1);
+                localStorage.setItem('user2', JSON.stringify(allPosts2));
+                allPosts3.splice(i, 1);
+                localStorage.setItem('user3', JSON.stringify(allPosts3));
+                // history.go(0);
+            };
+                var specButtons = function(prev, now, remove){
+                    prev.remove();
+                    now.append($('<h1></h1>').html(item.text));
+                    now.append(remove);
+                };
+
+                buttonRemove1.click(function() {
+                    removeButton(postContainer1);
+                });
+                buttonRemove2.click(function() {
+                    removeButton(postContainer2);
+                });
+                buttonRemove3.click(function() {
+                    removeButton(postContainer3);
+                });
+
+                buttonInProgress.click(function () {
+                    var data = localStorage.getItem('user');
+                    allPosts2.push(data);
+                    var dataString2= JSON.stringify(allPosts2);
+                    localStorage.setItem('user2', dataString2);
+                    allPosts.splice(i, 1);
+                    localStorage.setItem('user', JSON.stringify(allPosts));
+                    specButtons(postContainer1, postContainer2, buttonRemove2);
+                    postContainer2.append(buttonDone);
+                    $('#inProgress').append(postContainer2);
+                });
+                buttonDone.click(function () {
+                    var data = localStorage.getItem('user2');
+                    allPosts3.push(data);
+                    var dataString3= JSON.stringify(allPosts3);
+                    localStorage.setItem('user3', dataString3);
+                    allPosts2.splice(i, 1);
+                    localStorage.setItem('user2', JSON.stringify(allPosts2));
+                    specButtons(postContainer2, postContainer3, buttonRemove3);
+                    $('#doneDiv').append(postContainer3);
+                });
+
+            });
+
+            $('#addCard').click(function() {
+                var text = $('#textarea');
+                var data = {text: text.val()};
+                history.go(0);
+
+                allPosts.push(data);
+                var dataString = JSON.stringify(allPosts);
+                localStorage.setItem('user', dataString);
+
+
+            });
+        });
+    </script>
+</head>
+<style>
+    #container{
+        display: flex;
+        justify-content: space-around;
+    }
+    #toDo{
+        border: 1px solid #ccc;
+        width: 30%;
+        text-align: center;
+    }
+    #inProgress{
+        border: 1px solid #ccc;
+        width: 30%;
+        text-align: center;
+    }
+    #doneDiv{
+        border: 1px solid #ccc;
+        width: 30%;
+        text-align: center;
+    }
+    h1 {
+        border-bottom: 1px solid #ccc ;
+    }
+    .card{
+        border: 1px solid #ccc;
+        width: 80%;
+        margin-left: 10%;
+        margin-bottom: 5%;
+    }
+
+</style>
+<body>
+Create new To Do: <textarea id="textarea" cols="30" rows="1"></textarea> <button id="addCard">Add</button>
+<div id="container">
+<div id="toDo">
+    <h1>To Do</h1>
+</div>
+<div id="inProgress">
+    <h1>In Progress</h1>
+</div>
+<div id="doneDiv">
+    <h1>Done</h1>
+</div>
+</div>
+</body>
+</html>

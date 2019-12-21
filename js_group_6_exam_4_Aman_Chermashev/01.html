@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01</title>
+</head>
+<body>
+	<script>
+		var Dragon = {
+			hp: 2000,
+			defense: 120,
+			str: 150,
+			weapon: 0,
+			toSting: function(hp){
+				return this.hp;
+			}
+		};
+
+		var Hero = {
+			hp: 1000,
+			defense: 100,
+			str: 120,
+			weapon: 250,
+			shield: 150,
+			toSting: function(hp){
+				return this.hp;
+			}
+		};
+
+		var heroDamage = Hero.str + Hero.weapon - Dragon.defense;
+		var dragonDamage = Dragon.str + Dragon.weapon - Hero.defense;
+
+
+		while(true){
+			var choice = parseInt(prompt('Что делать ?' + '\n' + '1)Атаковать' + '\n' + '2)Ничего не делать' + '\n' + '3)Защищаться' + '\n' + 'Если вы введете пустую строку, нажмёте ОТМЕНА, введёте слово или введёте цифру, которая не соответствует действиям сверху, то вы пропскаете ход.'));
+			var hit = Math.random();
+			var dragonAct = Math.random();
+			while(true){
+				if (choice == 1){
+					if (Dragon.hp === 0) {
+						alert('Герой выйграл.');
+					}
+					else if (hit < 0.75) {
+						alert('Дракону было нанесено ' + heroDamage + ' урона. ');
+						alert('У дракона осталось ' + Dragon.hp + ' здоровья.');
+						Dragon.hp = Dragon.hp - heroDamage;
+						break;
+					}
+					else if (hit > 0.75) {
+						alert('Герой промахнулся');
+						break;
+					}
+				}
+				else if (choice == 2){
+					break;
+				}
+				else if (choice == 3) {
+					alert('Щит экипирован. Кол-во брони = ' + (Hero.defense + 150));
+					break;
+				}
+				else if (choice !== 3 || choice !== 2 ||
+					choice !== 1){
+					break;
+			}
+			else if (Dragon.hp == 0) {
+				alert('Герой выйграл.');
+			}
+		};
+		while(true){
+			if (Hero.hp == 0){
+				alert('Герой пал.');
+			}
+			else if (dragonAct < 0.50){
+				alert('Дракон нанес ' + dragonDamage + ' урона.');
+				alert('У героя осталось ' + Hero.hp + ' здоровья.');
+				Hero.hp = Hero.hp - dragonDamage;
+				break;
+			}
+			else if (dragonAct > 0.50){
+				alert('Дракон заснул.');
+				break;
+			}
+		};
+	};
+</script>
+</body>
+</html>

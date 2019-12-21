@@ -1,0 +1,53 @@
+.top-page
+	background: url("../images/background.jpg") 0 0 no-repeat
+	background-size: cover
+	&--header
+		display: flex
+		justify-content: space-between
+		&--craft
+			font-size: 13px
+			color: #fff
+			text-transform: uppercase
+			display: inline-block
+			margin-top: 52px
+			padding-right: 154px
+		&--link
+			text-decoration: none
+			color: #9b7d08
+			font-size: 19px
+			text-transform: uppercase
+			padding-left: 27px
+		&--ul
+			display: flex
+			list-style: none
+			padding-left: 0
+		&--nav
+			background: #f1c206
+			height: 42px
+			width: 46%
+			margin-right: -21%
+			margin-top: 24px
+	&--video-note-block
+		font-family: 'Noto Sans', sans-serif
+		display: flex
+		justify-content: space-between
+		flex-wrap: wrap
+		padding-bottom: 46px
+		&--picblock
+			margin-top: 53px
+			&--pic
+				width: 86%
+		&--note
+			font-size: 63px
+			text-align: center
+			text-transform: uppercase
+			width: 35%
+			&--yellow
+				color: #f5c506
+			&--white
+				color: #fff
+	+big-desktop
+		&--header
+			display: block
+	+medium-desktop
+		display: none

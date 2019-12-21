@@ -1,0 +1,44 @@
+.header
+	font-size: 19px
+	text-transform: uppercase
+	display: flex
+	font-family: 'Noto Sans', sans-serif
+	box-shadow: 0px 2px 5px 0px rgba(50, 50, 50, 0.75)
+	position: relative
+	z-index: 2
+	height: 56px
+	&--logo
+		background: linear-gradient(to bottom, rgba(93,93,93,1) 1%,rgba(70,70,70,1) 100%)
+		width: 100%
+	&--nav
+		background: #f1c206
+		height: 56px
+		width: 98%
+	&--ul
+		display: flex
+		list-style: none
+		padding-left: 0
+	&-link
+		text-decoration: none
+		color: #9b7d08
+		display: inline-block
+		&-2
+			padding-left: 9px
+			padding-right: 9px
+		&-3
+			padding-left: 9px
+			padding-right: 11px
+	&-border
+		border-right: 1px solid #d6ac05
+		border-left: 1px solid #d6ac05
+	+medium
+		display: none
+	+medium-small
+		font-size: 13px
+	+little-small
+		display: block
+		&--nav
+			width: 100%
+			margin-top: -3px
+		&--ul
+			margin: 0

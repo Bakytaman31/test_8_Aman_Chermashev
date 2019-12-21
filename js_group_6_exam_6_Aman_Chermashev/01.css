@@ -1,0 +1,36 @@
+#name-subscribe{
+	margin-left: 13%;
+}
+#name-subscribe #follow-user{
+	margin-left: 63.5%;
+}
+#name-subscribe #edit-profile{
+	margin: 0;
+}
+form{
+	padding-left: 13%;
+	display: flex;
+	flex-wrap: wrap;
+
+}
+.form-group .form-control{
+	width: 376%;
+}
+.btn{
+	height: 50%;
+    margin-top: 2.5%;
+    margin-left: 55%;
+}
+.card{
+	width: 59%;
+    margin-left: 20%;
+    margin-top: 4%;
+    margin-bottom: 4%;
+}
+#posts{
+	margin-left: 14%;
+	width: 70%;
+	margin-top: 5%;
+	border: 2px solid #ccc;
+	border-radius: 3px;
+}

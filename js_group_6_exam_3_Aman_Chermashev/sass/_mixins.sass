@@ -1,0 +1,45 @@
+=triangle_bottom($height, $half_width, $color)
+	width: 0
+	height: 0
+	border-style: solid
+	border-width: $height $half_width 0 $half_width
+	border-color: $color transparent transparent transparent
+
+=position($poz, $top:false, $right:false, $bottom:false, $left: false)
+	position: $poz
+	@if $top
+		top: $top
+	@if $right
+		right: $right
+	@if $bottom
+		bottom: $bottom
+	@if $left
+		left: $left
+
+=big-desktop
+	@media screen and (max-width: 1330px)
+		@content
+=medium-desktop
+	@media screen and (max-width: 939px)
+		@content
+=medium
+	@media screen and (min-width: 940px)
+		@content
+=medium-small
+	@media screen and (max-width: 627px)
+		@content
+=small
+	@media screen and (max-width: 600px)
+		@content
+=little-small
+	@media screen and (max-width: 413px)
+		@content
+=very-small
+	@media screen and (max-width: 400px)
+		@content
+=phone
+	@media screen and (max-width: 360px)
+		@content
+=double
+	@media (min-width: 940px) and (max-width: 1330px)
+		@content
