@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component, Fragment} from 'react';
+import {Route, Switch} from "react-router-dom";
+import AddQuote from "./containers/AddQuote/AddQuote";
+import Editor from "./containers/Editor/Editor";
+import NavBar from "./components/NavBar/NavBar";
+import Quotes from "./containers/Quotes/Quotes";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    render() {
+        return (
+            <Fragment>
+                <NavBar/>
+                <Switch>
+                    <Route path="/" exact component={Quotes}/>
+                    <Route path="/category/:name" component={Quotes}/>
+                    <Route path="/addQuote" component={AddQuote}/>
+                    <Route path="/edit/:id" component={Editor}/>
+                    <Route render={() => <h1>Not Found</h1>}/>
+                </Switch>
+            </Fragment>
+        );
+    }
 }
 
 export default App;
